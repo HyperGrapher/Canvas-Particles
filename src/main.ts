@@ -1,23 +1,34 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import { setupCounter } from './counter'
+import "./style.css";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const container = document.querySelector<HTMLDivElement>("#app");
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const canvas = document.createElement("canvas");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+container?.appendChild(canvas);
+
+window.addEventListener("resize", () => {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+});
+
+const cx = canvas.getContext("2d");
+
+const mouse = <{ x: number | null; y: number | null }>{
+	x: null,
+	y: null,
+};
+
+window.addEventListener("click", (e: MouseEvent) => {
+	mouse.x = e.x;
+	mouse.y = e.y;
+	drawCircle();
+});
+
+const drawCircle = () => {
+	if (!mouse.x || !mouse.y || !cx) return;
+	cx.fillStyle = "orangered";
+	cx.beginPath();
+	cx.arc(mouse.x, mouse.y, 12, 0, Math.PI * 2);
+	cx.fill();
+};
