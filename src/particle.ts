@@ -20,7 +20,7 @@ export class Particle {
 	draw() {
 		this.context.fillStyle = "orangered";
 		this.context.beginPath();
-		this.context.arc(this.x, this.y, 12, 0, Math.PI * 2);
+		this.context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
 		this.context.fill();
 	}
 }
