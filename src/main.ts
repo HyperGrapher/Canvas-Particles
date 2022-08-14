@@ -43,6 +43,11 @@ const drawParticles = () => {
 	for (let i = 0; i < particles.length; i++) {
 		particles[i].update();
 		particles[i].draw();
+		// remove small particles
+		if (particles[i].size <= 0.3) {
+			particles.splice(i, 1);
+			i--;
+		}
 	}
 };
 

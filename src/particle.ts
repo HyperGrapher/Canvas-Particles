@@ -6,15 +6,15 @@ export class Particle {
 		public context: CanvasRenderingContext2D,
 		public x = pos.x!,
 		public y = pos.y!,
-		public size = Math.random() * 5 + 1,
+		public size = Math.random() * 15 + 1,
 		public velocityX = Math.random() * 3 - 1.5,
 		public velocityY = Math.random() * 3 - 1.5
-        
 	) {}
 
 	update() {
 		this.x += this.velocityX;
 		this.y += this.velocityY;
+		if (this.size > 0.2) this.size -= 0.1;
 	}
 
 	draw() {
