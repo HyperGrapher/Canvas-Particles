@@ -7,8 +7,8 @@ export class Particle {
 		public x = pos.x!,
 		public y = pos.y!,
 		public size = Math.random() * 15 + 1,
-		public velocityX = Math.random() * 3 - 1.5,
-		public velocityY = Math.random() * 3 - 1.5
+		public velocityX = Math.random() * 5 - 2.5,
+		public velocityY = Math.random() * 5 - 2.5
 	) {}
 
 	update() {

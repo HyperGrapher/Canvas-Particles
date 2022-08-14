@@ -21,23 +21,27 @@ window.addEventListener("resize", () => {
 
 const cx = canvas.getContext("2d");
 
-const initPosition = () => {
-	const mouse = <IPosition>{
-		x: Math.random() * canvas.width,
-		y: Math.random() * canvas.height,
-	};
-
-	return mouse;
+const mouse = <IPosition>{
+	x: Math.random() * canvas.width,
+	y: Math.random() * canvas.height,
 };
 
-const createParticleArray = () => {
-	for (let i = 0; i < 100; i++) {
-		const m = initPosition();
-		particles.push(new Particle(m, cx!));
+canvas.addEventListener("click", (event: MouseEvent) => {
+	mouse.x = event.x;
+	mouse.y = event.y;
+
+	for (let i = 0; i < 10; i++) {
+		particles.push(new Particle(mouse, cx!));
 	}
-};
+});
 
-createParticleArray();
+// const createParticleArray = () => {
+// 	for (let i = 0; i < 100; i++) {
+// 		particles.push(new Particle(mouse, cx!));
+// 	}
+// };
+
+// createParticleArray();
 
 const drawParticles = () => {
 	for (let i = 0; i < particles.length; i++) {
