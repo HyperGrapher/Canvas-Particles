@@ -27,20 +27,21 @@ const mouse = <IPosition>{
 	y: Math.random() * canvas.height,
 };
 
+const countOnClick = 50;
 canvas.addEventListener("click", (event: MouseEvent) => {
 	mouse.x = event.x;
 	mouse.y = event.y;
 
-	for (let i = 0; i < 50; i++) {
+	for (let i = 0; i < countOnClick; i++) {
 		particles.push(new Particle(mouse, cx!, hue));
 	}
 });
 
+const countOnMove = 10;
 canvas.addEventListener("mousemove", (event: MouseEvent) => {
 	mouse.x = event.x;
 	mouse.y = event.y;
-
-	for (let i = 0; i < 2; i++) {
+	for (let i = 0; i < countOnMove; i++) {
 		particles.push(new Particle(mouse, cx!, hue));
 	}
 });
@@ -59,10 +60,10 @@ const drawParticles = () => {
 
 const animate = () => {
 	// cx?.clearRect(0, 0, canvas.width, canvas.height);
-	cx!.fillStyle = "rgba(0, 0, 0, 0.15)";
-	cx?.fillRect(0, 0, canvas.width, canvas.height)
+	cx!.fillStyle = "rgba(0, 0, 0, 0.20)";
+	cx?.fillRect(0, 0, canvas.width, canvas.height);
 	drawParticles();
-	hue++
+	hue += 2;
 	requestAnimationFrame(animate);
 };
 
