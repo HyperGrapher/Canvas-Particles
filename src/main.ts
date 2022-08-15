@@ -13,6 +13,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 container?.appendChild(canvas);
 const particles: Array<Particle> = [];
+let hue = 0;
 
 window.addEventListener("resize", () => {
 	canvas.width = window.innerWidth;
@@ -30,18 +31,19 @@ canvas.addEventListener("click", (event: MouseEvent) => {
 	mouse.x = event.x;
 	mouse.y = event.y;
 
-	for (let i = 0; i < 10; i++) {
-		particles.push(new Particle(mouse, cx!));
+	for (let i = 0; i < 50; i++) {
+		particles.push(new Particle(mouse, cx!, hue));
 	}
 });
 
-// const createParticleArray = () => {
-// 	for (let i = 0; i < 100; i++) {
-// 		particles.push(new Particle(mouse, cx!));
-// 	}
-// };
+canvas.addEventListener("mousemove", (event: MouseEvent) => {
+	mouse.x = event.x;
+	mouse.y = event.y;
 
-// createParticleArray();
+	for (let i = 0; i < 2; i++) {
+		particles.push(new Particle(mouse, cx!, hue));
+	}
+});
 
 const drawParticles = () => {
 	for (let i = 0; i < particles.length; i++) {
@@ -56,8 +58,11 @@ const drawParticles = () => {
 };
 
 const animate = () => {
-	cx?.clearRect(0, 0, canvas.width, canvas.height);
+	// cx?.clearRect(0, 0, canvas.width, canvas.height);
+	cx!.fillStyle = "rgba(0, 0, 0, 0.15)";
+	cx?.fillRect(0, 0, canvas.width, canvas.height)
 	drawParticles();
+	hue++
 	requestAnimationFrame(animate);
 };
 
